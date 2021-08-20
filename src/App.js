@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import BubblePage from "./components/BubblePage";
 
 import Login from "./components/Login";
