@@ -51,13 +51,13 @@ Your finished project must include all of the following requirements. **Unlike o
 * [x] Save the token to localStorage.
 * [x] Build a `axiosWithAuth` module within the helpers folder to create an instance of axios with the authentication header.
 * [x] Build a `PrivateRoute` component within the components folder and use it to protect the route that renders the `BubblesPage` component.
-* [ ] In `App.js`, build the backend to the logout button. When pressed, send an http request to the logout endpoint and remove the authentication token from localStorage. Use window.location.href to redirect to the login page.
+* [x] In `App.js`, build the backend to the logout button. When pressed, send an http request to the logout endpoint and remove the authentication token from localStorage. Use window.location.href to redirect to the login page.
 
 #### Consuming the API
 > *Add in the http requests and state changes needed to connect our api to the web application. Consider the effect of authentication on your api requests.*
 
 * [x] In `services/fetchColorServices.js`, build out fetchColorService function to make a GET request to fetch the color data for your bubbles.
-* [x] When `BubblePages` mounts, call fetchColorServices and save it's result in state.
+* [x] When `BubblePages` mounts, call fetchColorServices and save its result in state.
 * [ ] In `BubblePage.js`, complete `saveEdit`, and `deleteColor` functions to make API requests for to editing and delete data.
 * [ ] Watch and enjoy as your app responds to updates in the data. Check out `Bubbles.js` to see how this is built.
 
@@ -76,7 +76,7 @@ Your finished project must include all of the following requirements. **Unlike o
 #### API Documentation
 * **[POST]** * to `http://localhost:5000/api/login`: returns a token to be added to the header of all other requests. Pass in the following credentials as the `body` of the request: `{ username: 'Lambda', password: 'School' }`
 * **[POST]** * to `http://localhost:5000/api/logout`: returns a token to be added to the header of all other requests.
-* **[GET]** to `http://localhost:5000/api/colors`: returns the list of colors and their hex codes. This endpoint canYeah only be accessed by an autheticated user.
+* **[GET]** to `http://localhost:5000/api/colors`: returns the list of colors and their hex codes. This endpoint can only be accessed by an authenticated user.
 * **[POST]** to `http://localhost:5000/api/colors`: creates a new color object. Pass the color as the `body` of the request (the second argument passed to `axios.post`). This endpoint can only be accessed by an autheticated user.
 * **[PUT]** to `http://localhost:5000/api/colors/:id`: updates the color using the `id` passed as part of the URL. Send the color object with the updated information as the `body` of the request (the second argument passed to `axios.put`). This endpoint can only be accessed by an authenticated user.
 * **[DELETE]** to `http://localhost:5000/api/colors/123`: removes the color using the `id` passed as part of the URL (123 in example). This endpoint can only be accessed by an autheticated user.

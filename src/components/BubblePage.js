@@ -7,14 +7,14 @@ import axios from "axios";
 
 //remove later
 import axiosWithAuth from "../helpers/axiosWithAuth";
+import FetchColorService from "../services/fetchColorService";
 
 const BubblePage = () => {
   const [colors, setColors] = useState([]);
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    axiosWithAuth()
-    .get('/colors')
+    fetchColorService()
     .then(res => setColors(res.data))
     .catch(err => console.log(err))
   },[])

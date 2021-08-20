@@ -24,11 +24,11 @@ const Login = (props) => {
     if (creds.username==='Lambda' && creds.password==='School') {
     axios.post('http://localhost:5000/api/login',creds)
     .then(res => {
-      localStorage.setItem('token', res.data.token)
-      setError('')
+      localStorage.setItem('token', res.data.payload)
       props.history.push('/bubbles')
     })
-    .catch(err => console.log(err))}
+    .catch(err => console.log(err))
+    } 
     else {setError('Username or Password not valid')}
   }
 

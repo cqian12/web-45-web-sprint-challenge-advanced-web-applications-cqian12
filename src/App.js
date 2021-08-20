@@ -9,14 +9,12 @@ import "./styles.scss";
 
 function App() {
   const Logout = () => {
-    useEffect(() => {
-      axiosWithAuth()
-      .post('/logout')
+    axiosWithAuth()
+      .post('http://localhost:5000/api/logout')
       .then(res => {
         localStorage.removeItem('token')
         window.location.href='/login'
       })
-    },[])
   }
 
   return (
@@ -24,7 +22,7 @@ function App() {
       <div className="App">
         <header>
           Color Picker Sprint Challenge
-          <a data-testid="logoutButton" href="/">logout</a>
+          <a data-testid="logoutButton" onClick={Logout} href="/">logout</a>
         </header>
         <Link to='/login'>Login</Link>
         {localStorage.getItem('token') && <div>
@@ -33,7 +31,7 @@ function App() {
       <Switch>
         <PrivateRoute exact path='/bubbles' component={BubblePage} />
         <Route path='/login' component={Login} />
-        <Route exact path='/' component={Login} />
+        <Route path='/' component={Login} />
       </Switch>
       </div>
     </Router>
