@@ -2,30 +2,34 @@ import React, { useState } from "react";
 import axios from "axios";
 import { STATEMENT_OR_BLOCK_KEYS } from "@babel/types";
 
+const initialState = {
+  username:'',
+  password:''
+}
+
 const Login = (props) => {
-  const [creds, setCreds] = useState({
-    username:'',
-    password:''
-  })
-  // make a post request to retrieve a token from the api
-  // when you have handled the token, navigate to the BubblePage route
-
-  const error = "";
+  const [creds, setCreds] = useState(initialState)
+  
   //replace with error state
-
+  const [error, setError] = useState('')
+  
   const inputChange = (e) => {
-    setCreds({
-      creds:{...creds,[e.target.name]: e.target.value}
-    })
+    setCreds({...creds,[e.target.name]: e.target.value})
   }
 
+  // make a post request to retrieve a token from the api
+  // when you have handled the token, navigate to the BubblePage route
   const login = (e) => {
     e.preventDefault()
-
+    if (creds.username==='Lambda' && creds.password==='School') {
     axios.post('http://localhost:5000/api/login',creds)
     .then(res => {
-      localStorage.setItem()
+      localStorage.setItem('token', res.data.token)
+      setError('')
+      props.history.push('/bubbles')
     })
+    .catch(err => console.log(err))}
+    else {setError('Username or Password not valid')}
   }
 
   return (
@@ -34,12 +38,13 @@ const Login = (props) => {
       <div data-testid="loginForm" className="login-form">
         <h2>Log In Below</h2>
         <form onSubmit={login}>
-          <input name='username' type='text' value={creds.username} onChange={inputChange} />
-          <input name='password' type='text' value={creds.password} onChange={inputChange} />
-          <button name='submit'>Log In</button>
+          <label>Username: </label>
+          <input id='username' name='username' type='text' value={creds.username} onChange={inputChange} />
+          <label>Password: </label>
+          <input id='password' name='password' type='text' value={creds.password} onChange={inputChange} />
+          <button id='submit'>Submit</button>
         </form>
       </div>
-
       <p id="error" className="error">{error}</p>
     </div>
   );
