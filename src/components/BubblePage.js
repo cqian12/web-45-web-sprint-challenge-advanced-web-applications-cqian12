@@ -43,7 +43,6 @@ const BubblePage = () => {
     .delete(`/colors/${colorToDelete.id}`)
     .then(res => {
       setColors(colors.filter(color => color.id !== res.data))
-      toggleEdit(!editing)
     })
     .catch(err => console.log(err))
   };
