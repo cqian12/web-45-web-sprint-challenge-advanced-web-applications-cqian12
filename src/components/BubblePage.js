@@ -11,12 +11,8 @@ const BubblePage = () => {
 
   useEffect(() => {
     fetchColorService()
-    .then(res => {
-      console.log(res.data)
-      setColors(res.data)
-    })
-    .catch(err => console.log(err))
-  },[editing])
+    .then(res => setColors(res.data))
+  },[editing]) //still makes call on mount, but needed to do this to get edit and delete functions working properly
 
   const toggleEdit = (value) => {
     setEditing(value);
@@ -29,7 +25,6 @@ const BubblePage = () => {
     .then(
       fetchColorService()
       .then(res => {
-        console.log(res.data)
         setColors(res.data)
         toggleEdit(!editing)
       })
@@ -43,6 +38,7 @@ const BubblePage = () => {
     .delete(`/colors/${colorToDelete.id}`)
     .then(res => {
       setColors(colors.filter(color => color.id !== res.data))
+      toggleEdit(!editing) //this is an imperfect fix, was not sure how to get delete working otherwise
     })
     .catch(err => console.log(err))
   };
